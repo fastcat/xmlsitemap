@@ -17,3 +17,9 @@ recommends[] = elements
 recommends[] = robotstxt
 recommends[] = vertical_tabs
 configure = admin/config/search/xmlsitemap
+
+; Information added by Drupal 6 LTS vendors on 2018-07-18
+version = "6.x-2.3"
+core = "6.x"
+project = "xmlsitemap"
+datestamp = "1531943095"

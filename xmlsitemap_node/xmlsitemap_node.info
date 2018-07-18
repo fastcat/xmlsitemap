@@ -6,3 +6,9 @@ dependencies[] = xmlsitemap
 files[] = xmlsitemap_node.module
 files[] = xmlsitemap_node.install
 files[] = xmlsitemap_node.test
+
+; Information added by Drupal 6 LTS vendors on 2018-07-18
+version = "6.x-2.3"
+core = "6.x"
+project = "xmlsitemap"
+datestamp = "1531943095"
