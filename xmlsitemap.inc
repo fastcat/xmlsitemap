@@ -99,16 +99,16 @@ function xmlsitemap_write_record($table, &$object, $update = array()) {
     }
 
     // For inserts, populate defaults from Schema if not already provided
-    if (!isset($object->$field) && !count($update) && isset($info['default']) && !array_key_exists($field, $object_fields)) {
-      $object->$field = $info['default'];
+    if (!isset($object->{$field}) && !count($update) && isset($info['default']) && !array_key_exists($field, $object_fields)) {
+      $object->{$field} = $info['default'];
     }
 
     // Build arrays for the fields, placeholders, and values in our query.
-    if (isset($object->$field) || (array_key_exists($field, $object_fields) && empty($info['not null']))) {
+    if (isset($object->{$field}) || (array_key_exists($field, $object_fields) && empty($info['not null']))) {
       $fields[] = $field;
-      if (isset($object->$field)) {
+      if (isset($object->{$field})) {
         $placeholders[] = db_type_placeholder($info['type']);
-        $values[] = empty($info['serialize']) ? $object->$field : serialize($object->$field);
+        $values[] = empty($info['serialize']) ? $object->{$field} : serialize($object->{$field});
       }
       else {
         $placeholders[] = '%s';
@@ -134,7 +134,7 @@ function xmlsitemap_write_record($table, &$object, $update = array()) {
 
     foreach ($update as $key) {
       $conditions[] = "$key = ". db_type_placeholder($schema['fields'][$key]['type']);
-      $values[] = $object->$key;
+      $values[] = $object->{$key};
     }
 
     $query = "UPDATE {". $table ."} SET $query WHERE ". implode(' AND ', $conditions);
@@ -146,7 +146,7 @@ function xmlsitemap_write_record($table, &$object, $update = array()) {
     if ($serials) {
       // Get last insert ids and fill them in.
       foreach ($serials as $field) {
-        $object->$field = db_last_insert_id($table, $field);
+        $object->{$field} = db_last_insert_id($table, $field);
       }
     }
   }

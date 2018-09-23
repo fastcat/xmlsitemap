@@ -1661,8 +1661,8 @@ function xmlsitemap_db_fetch_col($query) {
 function xmlsitemap_db_fetch_all_assoc($query, $field) {
   $return = array();
   while ($result = db_fetch_object($query)) {
-    if (isset($result->$field)) {
-      $key = $result->$field;
+    if (isset($result->{$field})) {
+      $key = $result->{$field};
       $return[$key] = $result;
     }
   }
